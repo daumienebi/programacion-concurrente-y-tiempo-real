@@ -12,11 +12,15 @@ public class Lanzador {
 		hiloB.start();
 		hiloC.start();
 		
-		//Ponemos uno de los hilos con prioridad
+		// Ponemos uno de los hilos con prioridad
 		// Sobre papel, el hiloA va tener mas prioridad, pero no signiifica que siempre va tener
 		// prioridad, se utilza más internamente en caso de empate
 		hiloA.setPriority(10);
 		hiloB.setPriority(5);
 		hiloC.setPriority(1);
+		
+		System.out.println("Soy el hiloA y tengeo la prioridad" + hiloA.getPriority());
+		System.out.println("Soy el hiloB y tengeo la prioridad" + hiloB.getPriority());
+		System.out.println("Soy el hiloC y tengeo la prioridad" + hiloC.getPriority());
 	}
 }

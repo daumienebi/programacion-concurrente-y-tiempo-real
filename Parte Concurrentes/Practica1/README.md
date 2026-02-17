@@ -48,7 +48,8 @@ planificador solo puede realizar la tarea de uno a la vez.
 Cuando se quiere controlar cuantos hilos maximos que se pueden ejecutar / lanzar a la vez por ejemplo
 
 **_¿Qué se entiende por degrade gracefully de una aplicación?_**  
-Terminar con la aplicacion de forma que nada queda abierto
+Terminar con la aplicacion de forma que nada queda abierto, llamando al metodo shutdown() de los ejecutores por ejemplo de forma que no queda
+ningún hilo zombie por ahi
 
 ## Análisis y monitorización de ejecuciones concurrentes con interrupción (Caso de estudio 5)
 **_¿Cuál es el valor del parámetro de entrada con el que se ha conseguido cada salida?_**

@@ -13,14 +13,14 @@ public class Lanzador {
 		hiloA.start();
 		hiloB.start();
 		hiloC.start();
-		
 		try {
+			// Hacemos que el hilo principal espere hiloA antes de seguir con su ejecución.
 			hiloA.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		// Esta linea que imprime hola no se ejecutará cuando haya terminado el hilo A
-		// debido al join()
+		// debido al join().
 		System.out.println("hola, he esperado al hiloA para terminar antes de mostrarme");
 	}
 }
