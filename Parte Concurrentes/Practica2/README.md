@@ -13,6 +13,7 @@ Posteriormente, para que funcionen los asserts a la hora de ejecutar el programa
 
 **NOTA** : Para pasar el valor por parametro a una aplicación en Eclipse : Click derecho sobre la clase a ejecutar -> Run As
 -> Run Configuration -> Seleccionar la pestaña de argumentos e introducir el valor "-ea" como argumentos de la maquina virtual de java. (VM Arguments).
+<img width="1182" height="521" alt="image" src="https://github.com/user-attachments/assets/f249d3a0-1ffa-44f5-9a73-9e1acb39484c" />
 
 **_¿Si se elimina la sincronización se cumple el invariante (ejecutar con las aserciones activadas -ea)?_**
 
