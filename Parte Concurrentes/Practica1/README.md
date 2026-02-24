@@ -1,4 +1,4 @@
-# Notas / Respuesta a las pregunts sobre la practica
+# Practica 1 - Aproximación a la programación concurrente en Java
 ## Concurrencia básica (Caso de estudio 1)
 **_Describe el funcionamiento del planificador de hilos_**
 
