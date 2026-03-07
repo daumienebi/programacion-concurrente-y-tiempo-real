@@ -13,7 +13,7 @@ public class AdaptadorParqueSincronizado implements IParque {
 	}
 
 	@Override
-	public void entrarAlParque(String puerta) {
+	public synchronized void entrarAlParque(String puerta) {
 		this.parque.entrarAlParque(puerta);	
 	}
 	
