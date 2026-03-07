@@ -16,5 +16,9 @@ Posteriormente, para que funcionen los asserts a la hora de ejecutar el programa
 
 **_¿Si se elimina la sincronización se cumple el invariante (ejecutar con las aserciones activadas -ea)?_**
 
-En la clase `Parque` que implementa la interfaz `IParque`, para solucionar los errores anteriores debido a que los hilos no entraban al metodo `entrarAlParque(String nombrePuerta)` de forma sincronizada, hubo que agregar la palabra reservada `synchronized` para que cuando un hilo se encuentra en ese metodo realizando sus tareas, otros hilos no puedan interferir en sus tareas.Entonces si eliminamos esa sincronización, no podemos asegurar que se cumpla el invariante....o no estoy seguro.. PREEEEEGUNTA AL PROFE!!
+En la clase `Parque` que implementa la interfaz `IParque`, para solucionar los errores anteriores debido a que los hilos no entraban al metodo `entrarAlParque(String nombrePuerta)` de forma sincronizada, hubo que agregar la palabra reservada `synchronized` para que cuando un hilo se encuentra en ese metodo realizando sus tareas, otros hilos no puedan interferir en sus tareas.Entonces si eliminamos esa sincronización, no podemos asegurar que se cumpla el invariante siempre.
 
+Tenemos dos problemas criticos en el codigo en cuanto a su mantenimiento (obviamente esto no se nota ahora en este programa pequeño pero es una buena practica tener estas consideraciones). Tenemos que separar bien las responsabilidades de cada parte y tambien queremos que solo se puede instanciar una unica instancia de Parque en el programa (Aplicando el patron **Singleton**) y tambien separar bien la parte concurrente del codigo de la parte no concurrente (Aplicando el patrón **Adaptador**)
+
+## Caso de estudio 2: Simulación de entradas a un parque de múltiples entradas
+// Todo : Completar la documentación de esta parte

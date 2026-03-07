@@ -1,4 +1,4 @@
-package casodeestudio1;
+package casodeestudio2;
 
 import java.util.Hashtable;
 
@@ -36,15 +36,25 @@ public class Parque implements IParque {
 			contadorPuertas.put(puerta, valorAnterior + 1);
 		}
 		
-		//Mostrar la informacion
-		System.out.println("Entrada al parque por " + puerta);
-		System.out.println("Personas en el parque " + contadorPersonasTotales);
-		System.out.println("Por puerta A: " + contadorPuertas.get("Puerta A"));
-		System.out.println("Por puerta B: " + contadorPuertas.get("Puerta B"));
+		// Mostramos la informacion del parque
+		mostrarInformacion(puerta);
 		
 		//Comprobar los invariante con un Assert
 		int sumaTotal = obtenerSumaTotalHashTable();
 		assert (sumaTotal == contadorPersonasTotales) : "No se cumple el invariante";
+	}
+	
+	/**
+	 * Muestra el estado actual de los contadores del parque
+	 * @param puerta La puerta por la cual se ha producido una nueva entrada al parque
+	 */
+	private void mostrarInformacion(String puerta) {
+		System.out.println("Entrada al parque por " + puerta);
+		System.out.println("Personas en el parque " + this.contadorPersonasTotales);
+		// Ahora mostramos el numero de entradas por cada puerta
+		for(String clave : contadorPuertas.keySet()) {
+			System.out.println("Por " + clave  + ": "+ contadorPuertas.get(clave));
+		}
 	}
 	
 	/**
