@@ -1,7 +1,5 @@
 package casodeestudio1;
 
-import java.util.Random;
-
 public class ActividadEntradaPuerta implements Runnable {
 	//Constructor..recibe el parque y la puerta
 	public IParque parque;

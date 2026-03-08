@@ -31,7 +31,8 @@ public class Parque implements IParque {
 		if(contadorPuertas.get(puerta) == null) {
 			contadorPuertas.put(puerta, 1);
 		}else {
-			// Obtener el valor anterior del contador para luego s
+			// Obtener el valor anterior del contador para luego sumarle 1 para incrementar
+			// el numero de personas que han entrado por esa puerta.
 			int valorAnterior = contadorPuertas.get(puerta);
 			contadorPuertas.put(puerta, valorAnterior + 1);
 		}

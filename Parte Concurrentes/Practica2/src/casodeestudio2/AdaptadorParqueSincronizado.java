@@ -1,7 +1,8 @@
 package casodeestudio2;
 
 /**
- * Esta clase se encargará de la parte concurrente del problema
+ * Esta clase se encargará de la parte concurrente del problema, se implementa el patron
+ * singleton para asegurar que solo exista una instancia del parque en todo el programa.
  */
 public class AdaptadorParqueSincronizado implements IParque {
 	private IParque parque;
