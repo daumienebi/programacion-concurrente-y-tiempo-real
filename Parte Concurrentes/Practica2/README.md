@@ -23,13 +23,13 @@ Tenemos dos problemas criticos en el codigo en cuanto a su mantenimiento (obviam
 
 ## Caso de estudio 2: Simulación de entradas a un parque de múltiples entradas
 
-**_Ejecuta el programa varias veces el programa, con diferentes valores de N, y analiza el resultado de cada ejecución. ¿Son las trazas de ejecución siempre iguales?**_
+**_Ejecuta el programa varias veces el programa, con diferentes valores de N, y analiza el resultado de cada ejecución. ¿Son las trazas de ejecución siempre iguales?_**
 
 No, las trazas de ejecución no son siempre iguales dado que se siguien comportando como hilos y no podemos asegurar por que puerta se entra al parque, independientemente del número de puertas que se haya creado (N).
 
-**_¿Cuál es invariante del parque que se intenta preservar?**_
+**_¿Cuál es invariante del parque que se intenta preservar?_**
 
 El invariante en este caso sigue siendo que el total de personas en el parque tiene que ser igual que la suma de personas que han entrado por cada una de las puertas creadas (N).
 
-**_¿Si se elimina la sincronización se cumple el invariante?**_
+**_¿Si se elimina la sincronización se cumple el invariante?_**
 No porque no podemos asegurar que se cumpla el invariante siempre, lo más probable es que falle en la mayoría de los casos de prueba. Y en el caso de que no falle, puede ser porque el numero de hilos funcionando al mismo tiempo no es suficiente para causar el fallo porque estos hilos tienen que realizar tareas muy simples. Esto puede resultar engañoso porque la forma de asegurar que se cumpla el invariante es manteniendo la sincronización.
