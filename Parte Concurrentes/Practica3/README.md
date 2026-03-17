@@ -9,8 +9,6 @@ Se trata de escribir un programa que simule el comportamiento del sistema durant
 
 
 ## Comentarios sobre la practica
-// Preguntar al profe si primero tienen que entrar las 20 personas antes de salir o que lo hagan simultaneamentes...para modificar     	la implementación
-
 ### Notas
 * Sí el numero de algunas puerta se encuentra en negativa, es porque han salido mas personas que los que han entrado por esa puerta!
 * Sí el numero de alguna puerta es 0, significa que han entrado y salido el mismo número de personas por esa puerta
@@ -19,7 +17,7 @@ Se trata de escribir un programa que simule el comportamiento del sistema durant
 ## Extras
 Para utilizar el assert en Java, se utiliza con el siguiente sintaxis:
 
-`assert expresión : mensajeDeError` por ejemplo `assert nuemro = 20 : "Se ha superado el limite"`.
+`assert expresión : mensajeDeError` por ejemplo `assert numero == 20 : "No se cumple el invariante"`.
 
 Posteriormente, para que funcionen los asserts a la hora de ejecutar el programa tenemos que pasar el argumento `-ea` a la maquina virtual de java. Se puede pasar los argumentos por consolas si se ejecuta el programa por consola.
 

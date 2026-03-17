@@ -3,11 +3,20 @@ import java.util.Hashtable;
 
 public class Parque implements IParque {
 
-	private int aforoMax = 50;
+	// Variables para colores bonitos en la salida pero esto es totalmente opcional
+	// ¿Porque lo he hecho? ...pues porque puedo
+	final String VERDE = "\u001B[32m";
+	final String AMARILLO = "\u001B[33m";
+	final String RESET = "\u001B[0m";
+	final String CYAN = "\u001B[46m";
+	final String AZUL = "\u001B[44m";
+	
+	//Variables para el aforo
+	private final int aforoMax = 20;
+	private final int aforoMin = 0;
 	// Contador de personas totales en el parque
 	private int contadorPersonasTotales;
-	// Contador individual para cada puerta con un HashTables dado que esta
-	// estructura esta
+	// Contador individual para cada puerta con un HashTables dado que esta estructura esta
 	// preparada para la concurrencia
 	private Hashtable<String, Integer> contadorPuertas = new Hashtable<String, Integer>();
 
@@ -26,7 +35,6 @@ public class Parque implements IParque {
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		// Actualizar los contadores individuales de cada puerta del hashtable
@@ -48,8 +56,7 @@ public class Parque implements IParque {
 	public void salirDelParque(String puerta) {
 		// Actualizar el contador total
 		contadorPersonasTotales--;
-		// Este sleep aqui es para forzar que se incumpla el invariante porque aveces no
-		// pasaba
+		// Este sleep aqui es para forzar que se incumpla el invariante porque aveces no pasaba
 		// cuando se quita el 'synchronized'
 		try {
 			Thread.sleep(2000);
@@ -57,11 +64,13 @@ public class Parque implements IParque {
 			e.printStackTrace();
 		}
 		// Actualizar los contadores individuales de cada puerta del hashtable
+		// Aqui, si se intenta salir por una puerta por la que nunca se ha entrada, lo inicializamos
+		// con un valor de -1
 		if (contadorPuertas.get(puerta) == null) {
-			contadorPuertas.put(puerta, 1);
+			contadorPuertas.put(puerta, -1);
 		} else {
-			// Obtener el valor anterior del contador para luego sumarle 1 para incrementar
-			// el numero de personas que han entrado por esa puerta.
+			// Obtener el valor anterior del contador para restarle 1 y decrementar
+			// el numero de personas que han salido por esa puerta.
 			int valorAnterior = contadorPuertas.get(puerta);
 			contadorPuertas.put(puerta, valorAnterior - 1);
 		}
@@ -77,18 +86,28 @@ public class Parque implements IParque {
 	 * @param esEntrada Para indicar si la actividad ha sido una entrada al parque
 	 */
 	private void mostrarInformacion(String puerta,boolean esEntrada) {
-		System.out.println("\n-------------------------------------------------");
+		// Este metodo podria ser mas corto pero como he metido cositas de colores y un formato a mi gusto
+		// pues queda mas largo pero, se podria hacer muchiiiiisimo mas simple xd.
 		if(esEntrada) {
-			System.out.println("Entrada al parque por " + puerta);
+			System.out.println(VERDE + "\n-------------------------------------------------" + RESET);
+			System.out.println(VERDE + "\t\tEntrada al parque por " + puerta + RESET);
+			System.out.println("\tPersonas en el parque: " + this.contadorPersonasTotales);
+			// Ahora mostramos el balance entre entrada/salida de cada puerta
+			for(String clave : contadorPuertas.keySet()) {
+				System.out.println("\tPor " + clave  + ": "+ AZUL + contadorPuertas.get(clave) + RESET);
+			}
+			System.out.println(VERDE + "\n-------------------------------------------------" + RESET);
 		}else {
-			System.out.println("Salida del parque por " + puerta);
+			System.out.println(AMARILLO + "\n-------------------------------------------------" + RESET);
+			System.out.println(AMARILLO + "\t\tSalida del parque por " + puerta + RESET);
+			System.out.println("\tPersonas en el parque: " + this.contadorPersonasTotales);
+			// Ahora mostramos el balance entre entrada/salida de cada puerta
+			for(String clave : contadorPuertas.keySet()) {
+				System.out.println("\tPor " + clave  + ": "+ AZUL + contadorPuertas.get(clave) + RESET);
+			}
+			System.out.println(AMARILLO + "\n-------------------------------------------------" + RESET);
 		}
-		System.out.println("Personas en el parque " + this.contadorPersonasTotales);
-		// Ahora mostramos el balance entre entrada/salida de cada puerta
-		for(String clave : contadorPuertas.keySet()) {
-			System.out.println("Por " + clave  + ": "+ contadorPuertas.get(clave));
-		}
-		System.out.println("\n-------------------------------------------------");
+		
 	}
 	
 	/**
@@ -109,13 +128,15 @@ public class Parque implements IParque {
 	
 	private void checkInvarianteEntrada() {
 		int sumaTotal = obtenerSumaTotalHashTable();
-		assert (sumaTotal == contadorPersonasTotales) : 
-			sumaTotal + "!=" + contadorPersonasTotales + "No se cumple el invariante";
+		// Invariante 1
+		assert (sumaTotal == contadorPersonasTotales) :  
+			"INV : La suma total de las personas por cada puerta tiene que ser igual al numero de personas totales en el parque";
+		// Invariante 2
+		assert (contadorPersonasTotales <= aforoMax):"INV: El numero de personas en el parque tiene que ser <= que " + aforoMax;
 	}
 	
 	private void checkInvarianteSalida() {
-		assert (contadorPersonasTotales < 0) : 
-			contadorPersonasTotales + "<" + 0 + "No se cumple el invariante";
+		assert (contadorPersonasTotales >= aforoMin) : "INV: El numero de personas en el parque tiene que ser >= " + aforoMin;
 	}
 	
 	public boolean sePuedeEntrar() {
@@ -123,7 +144,7 @@ public class Parque implements IParque {
 	}
 
 	public boolean sePuedeSalir() {
-		return contadorPersonasTotales > 0;
+		return contadorPersonasTotales > aforoMin;
 	}
 
 }

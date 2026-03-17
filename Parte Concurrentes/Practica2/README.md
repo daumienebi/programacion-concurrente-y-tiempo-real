@@ -7,7 +7,7 @@ No, las trazas de ejecución no son siempre iguales dado que se siguien comporta
 **_¿Cuál es invariante del parque que se intenta preservar (usar assert de Java)?_**
 El invariante en este caso es que el total de personas en el parque tiene que ser igual que la suma de personas que han entrado por cada puerta (A y B). Para utilizar el assert en Java, se utiliza con el siguiente sintaxis:
 
-`assert expresión : mensajeDeError` por ejemplo `assert nuemro = 20 : "Se ha superado el limite"`.
+`assert expresión : mensajeDeError` por ejemplo `assert numero == 20 : "INV: No se cumple el invariante"`.
 
 Posteriormente, para que funcionen los asserts a la hora de ejecutar el programa tenemos que pasar el argumento `-ea` a la maquina virtual de java. Se puede pasar los argumentos por consolas si se ejecuta el programa por consola.
 
